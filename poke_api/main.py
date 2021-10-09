@@ -108,6 +108,7 @@ def get_all_names_list(name):
     else:
         return ValueError("{0} is not a Valid name".format(name))
 
+
 def get_berry_details(berry_name):
     """This function will retutn berry details """
     berry_to_fetch = 'berry/' + berry_name
@@ -127,6 +128,7 @@ def get_berry_details(berry_name):
     # url key and adding all names as list to 'flavors'
 
     # json_response['flavors'] = [x['flavor'] for x in json_response['flavors']]
+    # json_response['potenct'] = 
 
     for jr in json_response['flavors']:
         jr['flavor'] = jr['flavor']['name']
@@ -143,4 +145,30 @@ def get_berry_details(berry_name):
     return json_response
 
 
-# print(get_berry_details('cheri'))
+def get_all_flavors():
+    """This function will get all the flavor names and its potencies as a dictionary
+        Output:
+            Type: Dict
+            Example: {<flavor-name>:{'berries':<list-of-berries>},'contest_type':<type:str>,'id':<type:int>}
+    """
+
+    flavors_url = urljoin(URL,'berry-flavor')
+    flavor_response = requests.get(url=flavors_url)
+
+    flavor_json_response = flavor_response.json()
+
+    flavors = {}
+    for i in flavor_json_response['results']:
+
+
+        flav_url = i['url']
+        flav_url_response = requests.get(url=flav_url).json()
+
+        flavors[i['name']] = {}
+        flavors[i['name']]['berries'] = [j['berry']['name'] for j in flav_url_response['berries']]
+        flavors['contest_type'] = flav_url_response['contest_type']['name']
+        flavors['id'] = flav_url_response['id']
+    
+    return flavors
+
+
