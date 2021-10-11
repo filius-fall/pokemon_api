@@ -1,4 +1,5 @@
-from poke_api.main import battle_areana
+import requests
+from poke_api import battle_areana,URL
 
 
 def run_battle():

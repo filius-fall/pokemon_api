@@ -3,7 +3,7 @@ import requests
 from urllib.parse import urljoin
 from tabulate import tabulate
 
-from berry import all_pokemon_names
+from .berry import all_pokemon_names
 
 URL = 'https://pokeapi.co/api/v2/'
 ENDPOINTS = [
@@ -70,13 +70,13 @@ class Pokemon:
     def __init__(self,name):
         self.pokemon_list = all_pokemon_names()
         self.name = self.validate_name(name)
-        self.health = 1000
+        self.health = 10000
     
     def __repr__(self):
         return "<Pokemon:{0}>".format(self.name)
 
     def __str__(self):
-        stats = [[i,self.get_pokemo_details()['stats'][i]] for i in self.get_pokemo_details()['stats']]
+        stats = [[i,self.get_pokemon_details()['stats'][i]] for i in self.get_pokemon_details()['stats']]
         tab = tabulate(stats,headers=['Type','Value'],tablefmt='orgtbl')
         return tab
         
@@ -84,7 +84,7 @@ class Pokemon:
     def attack(self,attack_name,defender_name):
         """This function will give damage to other pokemon that is mentioned """
         
-        attack_stats  = self.get_pokemo_details()['stats']['attack']
+        attack_stats  = self.get_pokemon_details()['stats']['attack']
         damage = self.damage_by_each_move(attack_name) * (attack_stats/2)
         print("damage given by {0} to {1} for {2}".format(self.name,defender_name.name,damage))
         try:
@@ -100,7 +100,7 @@ class Pokemon:
             pokemon other than attack power of opponent
         
         """
-        stat_defense = self.get_pokemo_details()['stats']['defense']
+        stat_defense = self.get_pokemon_details()['stats']['defense']
 
         # real damage will be reduced according to defence stat of pokemon
         real_damage = damage / (stat_defense/10)
@@ -127,7 +127,7 @@ class Pokemon:
             attack name from the 
         """
 
-        poke_details = self.get_pokemo_details()
+        poke_details = self.get_pokemon_details()
         if move_name in poke_details['moves']:
             print(self.move_damages(move_name))
             damage = self.move_damages(move_name)['damage']
@@ -137,7 +137,7 @@ class Pokemon:
         
 
     
-    def get_pokemo_details(self):
+    def get_pokemon_details(self):
         """This function will get all the details of given pokemon """
         
         pokemon = 'pokemon/' + str(self.name)
@@ -233,8 +233,8 @@ def battle_areana():
         contender_2.attack(c2_attack_name,contender_1)
 
 
-        c1_hp = contender_1.get_pokemo_details()['stats']['defense'] * 10
-        c2_hp = contender_2.get_pokemo_details()['stats']['defense'] * 10
+        c1_hp = contender_1.get_pokemon_details()['stats']['defense'] * 10
+        c2_hp = contender_2.get_pokemon_details()['stats']['defense'] * 10
         if contender_1.health <= c1_hp:
             print("{0} is dead. Contender 2 is winner".format(contender_1.name))
             battle_state = "stop"
