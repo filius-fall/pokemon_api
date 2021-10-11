@@ -1,6 +1,6 @@
-# Foobar
+# Simple Pokemon battle
 
-Foobar is a Python library for dealing with word pluralization.
+From you can do Pokemon battle from python shell. You can do 
 
 ## Installation
 

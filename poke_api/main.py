@@ -242,3 +242,6 @@ def battle_areana():
             print("{0} is dead. Contender 1 is winner".format(contender_2.name))
             battle_state = "stop"
 
+
+if __name__ == "__main__":
+    ...
