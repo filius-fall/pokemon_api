@@ -2,7 +2,7 @@
 
 # Simple Pokemon battle
 
-You can do simple Pokemon battle from python shell. You can 
+You can do simple Pokemon battle from python shell
 
 ## Pre-requisites
 
@@ -20,7 +20,7 @@ You can do simple Pokemon battle from python shell. You can
 
    or Downloading the zip file and extracting it and then change directory to repo folder
 
-   
+
 
 2. Create a virtual environment using conda or python venv
 
@@ -109,7 +109,7 @@ First import Pokemon class from poke_api
 
 ```
 $ python3
-Python 3.9.7 (default, Sep 16 2021, 13:09:58) 
+Python 3.9.7 (default, Sep 16 2021, 13:09:58)
 [GCC 7.5.0] :: Anaconda, Inc. on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> from poke_api import Pokemon
@@ -130,7 +130,7 @@ pikachu
 | special-attack  |      50 |
 | special-defense |      50 |
 | speed           |      90 |
->>> 
+>>>
 ```
 
 
