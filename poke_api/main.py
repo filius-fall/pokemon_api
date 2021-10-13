@@ -93,9 +93,6 @@ class Pokemon:
         pokemon = 'pokemon/' + str(self.name)
         poke_url = urljoin(URL,pokemon)
         poke_response = requests.get(url=poke_url).json()
-
-        print(poke_response)
-
         result = {
             'abilities' : [],
             'base_experience': poke_response['base_experience'],
